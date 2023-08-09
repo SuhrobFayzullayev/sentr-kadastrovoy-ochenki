@@ -30,21 +30,395 @@ const months = [
   "Декабрь",
 ];
 
-const eventsArr = [
+const eventsArr= [
   {
-    day: "31",
-    month: "08",
+    day: "09",
+    month: "08", 
     year: "2023",
     files: {
       progress: {
         status: true,
-        title: "test1",
-        url: `data:image/jpeg;base64,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`,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/005/ocj0178rptm42kgswpssoaao3yczj04f.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "07",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/005/ocj0178rptm42kgswpssoaao3yczj04f.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000001.ods",
+        url: "/upload/iblock/6d8/c3m7qhxx2hckzznha0fj7rirrke5370a.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
       },
       done: {
         status: true,
+        title: "Акт №АОКС-13_2021_000002.ods",
+        url: "/upload/iblock/807/3sueqx4n3rj0iza810v2ybjas8d312sw.ods",
+      },
+      error: {
+        status: false,
         title: "",
         url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт№АОКС-13_2021_000003.ods",
+        url: "/upload/iblock/f5c/xxam1u3tehmnhzr6u19ves344fa9ga4k.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000004.ods",
+        url: "/upload/iblock/90b/mqnmwa7yuf0mj8jxdp4bsym89g64tl7g.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000005.ods",
+        url: "/upload/iblock/433/cy65wyhk2rvi25tov3ggxro4fg3uqpqn.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000006.ods",
+        url: "/upload/iblock/8f5/rawt905uegqm5kxfcf5ufuv49fps7bqd.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "04",
+    month: "03", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000007.ods",
+        url: "/upload/iblock/b8b/n9vi3iizpjjtm5z5kc52mwbu30tp7xu0.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "12",
+    month: "02", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000008.ods",
+        url: "/upload/iblock/266/d9awlllvcizqp7rc5gis2wr752jrhnix.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "12",
+    month: "03", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт №АОКС-13_2021_000009.ods",
+        url: "/upload/iblock/44f/egi0gi8pbwih2ygliaipvwint8ofyhph.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "03", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/65b/i5hedw5hq0ev7bf94hfy15j57nldjdvt.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d87/6re17b4cfhvvf3xy5tp6z3gtm99cu43p.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "03", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/586/64lmdmzt58jkhpo22s1uac9ul2rg36cr.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "12",
+    month: "04", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e54/b50l00m8qrbrv3k5uekq13qbichdls9y.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "04", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/edd/3sppp9o2dd8a7wv805529cciqfghz1gn.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "04", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/460/ykgvfowpx64h14vb53gktqca8vh88rmn.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "04", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/f46/z1bpyqcbowbujhi7hvaa29145b90m1rj.ods",
       },
       error: {
         status: false,
@@ -55,16 +429,104 @@ const eventsArr = [
   },
   {
     day: "30",
-    month: "06",
-    year: "2023",
+    month: "04", 
+    year: "2021",
     files: {
       progress: {
-        status: true,
-        title: "test1",
-        url: `data:image/jpeg;base64,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`,
+        status: false,
+        title: "",
+        url: "",
       },
       done: {
         status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/c9d/6v9rmgc1flhojfzydhtf1r4ct5l9ceo9.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "30",
+    month: "04", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d31/v7z3m31y6t96j106hyza1urvi47ctrgp.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "05", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e7f/hvbda77jrjxroylwgy8edt5ffj7uhhkw.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "05", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ed8/31h2fzp23hr31j5qpryaq63pplc7j5i5.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "05", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d17/v50d2mawp15c8ib55hojacgwlhqhrdzx.ods",
+      },
+      done: {
+        status: false,
         title: "",
         url: "",
       },
@@ -77,16 +539,434 @@ const eventsArr = [
   },
   {
     day: "31",
-    month: "07",
-    year: "2023",
+    month: "05", 
+    year: "2021",
     files: {
       progress: {
-        status: true,
-        title: "test1",
-        url: `data:image/jpeg;base64,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`,
+        status: false,
+        title: "",
+        url: "",
       },
       done: {
         status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/661/g69ywogub5tn1qzurtdj62hbeaid2b22.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "03",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/800/mlfa3v1rm5jajd4zuq34gne32xeejd87.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a35/if8vmpmvz68neffbl6hytjl7snfedq0t.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "16",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/0f5/v02o4xj3ediqodge2x8klen6kvippdn3.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/926/my8k482kbpvxy2hoy14ttjbmq70srwhl.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/0ae/s0f2xn6jifyi60qma58l7xnro5u99g0e.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a30/67q313fcjgp9bmonmfnuh4t8gby5rnwy.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/034/kg9yc408q5rfqcbsbihso9fsanii32li.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "06", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8c5/dqvgemz9z3ltbxukwe6jzpzn72wcc13m.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/265/g73l5clere0haj3c8jgzszfkdof6ot2q.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/5c2/yhtqqy0hjsh2ynbu443uxkyjss8v1p97.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/299/0dk3olzoqio9zdog12q579tu474jrtv2.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "16",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7e2/hzns7k7eqbjlyl1qubew0whu6a9k12z7.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/41c/nnani6nvndkf0cfsjronlvcjbhlkk0j4.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a2d/koojtm6n2fyktvsgapha95s4teqvg3vj.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "06",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ae1/eav9ugpjc1emz7mfuc6dijm38quc36dk.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/27f/6m953fur4fy7kgi5fcfl1rh78cx2k1qf.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "30",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/862/mpg54i32ev3vtjng5ffrbvxkdagk82wx.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/35c/udiwlhu42q6kkqufampkdzpxczh310r7.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "30",
+    month: "07", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ca7/2xjlw6k449a2mfw7g030bdhg1p51e0qo.ods",
+      },
+      done: {
+        status: false,
         title: "",
         url: "",
       },
@@ -99,12 +979,1354 @@ const eventsArr = [
   },
   {
     day: "09",
-    month: "08",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/dfc/dqbgtpcf2vieu9vkrvwgmwyh8u2l2xvy.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/bc2/as0f1qet1lzk2dq12i1x584s8jpjqs9y.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d2e/2hehdlm5jxani2f9saxfx4jbz7359d4s.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/c91/295jnu3qlaic4bjq3q2418oddwma3yvb.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "13",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b0a/28npk3dqutckb7m7jzn16ivgjc526le6.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/cc2/8czp140cy90d5220kj7owuw9cps7jx6d.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.xlsx.ods",
+        url: "/upload/iblock/095/q12v4ztcmbgii0qt613lf9wttlpebp5k.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a7b/eaxomfpkxg65vtscixgb29g46dwj0s1l.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "01",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a7b/eaxomfpkxg65vtscixgb29g46dwj0s1l.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8f7/ok23831jormlrq1vlcvk3rmhjskfzdju.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "04",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.xlsx.ods",
+        url: "/upload/iblock/834/5qacowx70kj5ygyfc33ukdjpab2zg1vc.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8f7/ok23831jormlrq1vlcvk3rmhjskfzdju.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8f7/ok23831jormlrq1vlcvk3rmhjskfzdju.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/5c9/pxglpyi7bcs5uf74mk9oxtqjwa8v718z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/4e7/lg84k6kox360jtyhvebecn4ht2aaav1z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.xlsx.ods",
+        url: "/upload/iblock/cb8/wgv399elkpnax9hxwr1ryaxsbfgm5l9u.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/fb1/vf5so7nu1golwkff72pt0z3vbgfigduf.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7d5/2ti0hjyrxv8krme1tkhnugkgwcoery0x.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7d5/2ti0hjyrxv8krme1tkhnugkgwcoery0x.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/529/6oqjckvgp8oi76b3mlrwar5vxi83vsbm.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "02", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/102/c6xhg7ww3re3w8t074ujxiw9be1mcihh.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/574/4rx7poieg0qoh05qvsx33zpq6ddmko6s.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/78e/nby9i8vle2w0l27m0exwruzt8sg7dlte.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a04/tcd7avkgt9lky362uw6w3ika77296342.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/41e/iz2igjyrv0qpo0gs1xeq8isdoiyo0blf.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e1b/ioa4t9x22zl6d5y5h8tyjk94atvv1wqs.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e1b/ioa4t9x22zl6d5y5h8tyjk94atvv1wqs.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e1b/ioa4t9x22zl6d5y5h8tyjk94atvv1wqs.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a1a/fu41dqr209vmwgijf7ugosuonv25rche.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a1a/fu41dqr209vmwgijf7ugosuonv25rche.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/63c/0ddwm0e8a5okw9wr97m3h1kgddmhj5s5.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2ee/ppa6575p1wn6qgk5s6c8xd65wrp9kue5.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/66e/rfrbozv167jyu7gc73cnv5jxlczolavs.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8d5/5706xjwcyk1y4t0dmxqvelmqjiao1ul0.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "31",
+    month: "03", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/bc4/j162qr9q2rwwrr49nr9f09fwccpjjgnb.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "07",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/231/ip2s1ywv38ypvxqk5phwr9ynt23zg68u.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/5ea/x0mtgn3k3x6gmdqt7ogg022h0b8e7iio.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "07",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/146/pqmmeqs66arb0meawst1ngi1vc5rx2fs.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "31",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a91/cax2x2sizd44ccp6lsv9757tn6yfpvsj.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "04",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d75/3wwt01ijvvuukr3brx1017n5a0utjnfm.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "31",
+    month: "08", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/6e0/ub26mp77zj2ngsawpxhu1kpm6bbeaup3.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/1f5/8eepmp0uq2btjbscklesw3ztz08zlj9b.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "09", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.xlsx",
+        url: "/upload/iblock/10d/b6hfvgshpl983ai1kcdln0l2uoi6w9zv.xlsx",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a06/5805btah2vf5d0y11cvpp9irf3ommq9r.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "09", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b1e/s1f5s6izr35y8knt42wtalvm894192mn.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/276/fcsy3ma3s6ypjz8j38mnn7ru4x0f9lis.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/baa/prz833a65mym8u4gvobe8v7j05zdkfv5.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "11", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7fe/ghrz7o71ha2s9s9f81b5jflsr5fof183.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "11", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/f0b/gsf22t6elc4g6k7aas0tylfgs3voiojp.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/908/iupfmkzo4skp60xipgc0slhpwbd4qm64.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/42c/hkey9m9ianied9q2vpykhz7ipwo1bahw.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "11", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/417/wkkdrvlsmtsqyctyy6zcspqhazfxodez.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "04", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/f54/bcc2zg3vfnohgyvrk31sq3wrioodb21l.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
     year: "2023",
     files: {
       progress: {
         status: true,
-        title: "test1",
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/12a/wgft3pazdvkth2f8n31n3ga6nbi0g8xu.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "05",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/cb2/4cx8oybd8icptucn5owtbdq8wxb84ce1.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "05",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/774/zzxl5ji16oxuztz3xy0i35giojglz3px.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "16",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/97d/p733pszhsyrr4cuxw3icyxk8h007xtgv.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "16",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ccc/924gjkaiugwkyajf22qsmz0goir82qsl.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/cfe/rqn18jhj6xc6wzw6evn16o2t0rj1dnq6.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/fec/e74rqu09jvdid833cqsyk7hx07lchkmt.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "05", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/20f/7q3b4uah98t2zr7zpd933er1ek2qu7v3.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
         url: "",
       },
       done: {
@@ -120,13 +2342,387 @@ const eventsArr = [
     },
   },
   {
-    day: "01",
-    month: "09",
-    year: "2023",
+    day: "02",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/bdc/fir1h5ps2xbspujuj66ft5ikt73l7wox.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "11", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/872/t45das25zjgtrc4abt7e5dohb7pmpj8m.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2ea/38vjest4fwvnq8u88a8mp9tk6is1s8xh.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "06", 
+    year: "2022",
     files: {
       progress: {
         status: true,
-        title: "test1",
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/4f2/ojaf71ytg4ecejwnii5kakjwb3n7fnyp.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "11", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/0d0/3d6tfwk4eg8tio9k7jn7iv2p4dpoa2cz.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/17e/b3mgzik34bcn16m0r9o25spwu2lutcoa.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/5ea/wrflfj2tvtesv1kxafuzh6sqrrivdwea.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/251/zn0ix81jpn4kyh30idamri1i7i0p6pgs.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/0a3/64hzkpfko5pxvm96xgn041g7ps0n88hx.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d71/82tkggp2r2a230kylf80ol601gqgrv21.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "06", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/54a/7mdyh2jhikrnlf27c3cuglm16qno0e3p.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "04",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "��� �� ��।������ ������஢�� �⮨����.ods",
+        url: "/upload/iblock/24c/pfe66hdlrww39e0dkh3xep6qio2y3jpa.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2b8/d4h6gvueo699oc4n1kesz4ajuhy34q4v.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/564/ts1fe10v7ht4i606ax62ra3ktew9stu4.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/713/qbi62ikp534m79f1lds5cp3tf7v9np7z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b2d/d123zf182zdpbklso6bru5n5hy1kpv3v.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/43d/16g8tb604yxju2drca92pqfcky7hqxda.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "09",
+    month: "08", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
         url: "",
       },
       done: {
@@ -141,7 +2737,1786 @@ const eventsArr = [
       },
     },
   },
+  {
+    day: "25",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/f5b/xusieap71dk8dkybh28vrisrbvpkg1ef.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "13",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.xlsx.ods",
+        url: "/upload/iblock/590/6a8p8d59bb65abk22hj9c6l05vvqylml.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "07", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/26c/6tgqd6yu7268afpy6t9zwejtje5jwuby.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "08",
+    month: "08", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/3a6/98xskllxd2i2qao6d3muljwtyvstr3cs.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/57b/kzdckc62ausxalu227mwyg27fi6ktk1s.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "16",
+    month: "08", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/96a/cackhj0vv2dt77ebibravmwd69manee8.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/4d6/t4vmx3uf7aweduk56ywrtfelezmdb80z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "01",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a00/0zjjz3lrl13t8acs49xsu8f09nmmy6j7.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "12",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/c5d/j6f3xb94dvhsexxz3gboyqr10uuzwndw.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/70d/1axo7rd2ir2qni4hkpgxsn8d148yny8i.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/409/c1y11hd64m05p5dw5akfwdajw5pyrak8.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2e9/fhrkgzspkpxbj1d6x8rdjz7stppwqwfx.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "09", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b8d/50mhth0i00cxuq5o2il0zdq0ozpcjtml.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ea9/2bxqsdph067o1jhwwbc52o86rv05gvs3.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d03/8i0c3f4gfbsylzfkfjsaw9xgs8pmzddu.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "12", 
+    year: "2021",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b8f/djn4nl0jaeugn41mo12icgs08fh0408w.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "11",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/679/84n329nm39jl3g8a7jww3c4kszhksdin.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d9f/b780xv1m16k8n15qu35k274845038w3p.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "18",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a1e/klm32jfspu7qu26vcx0hmms2luniep8c.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/c59/pih0w4dsy444rbpvgqs44a4rsmaj3di6.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "10", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/fd3/ynt29u1kvcdix3odim46bn9gia613pr7.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b10/nlx70xb32npku8atauy0eftq25m4m2r0.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/0e7/67kcmvl0mjghxlq2657c5rlwsq75wfcf.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/cbf/dfu774o71517pw93w3xfbugj3hlv0dyc.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/d4b/vcu9q0k86u3jlu2a0wejfqa3hxeb40d2.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/78e/ar8r5qsd42s4daibpegwgi36u4dzf4ey.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/cb4/1b8ovgx525rusp8fmi08itiqvn5jco34.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/c6e/h31rhujkg87f0ak2s4bfsny38dzq1m58.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "11", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/542/py99kzyyg44iga42yzlf5yu6h6tkwa8h.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "05",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2a4/kzrew67dzxiz19rb1wqnvi42shcxjh6q.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "05",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/656/uap0tz7c92t9kpg4iz9p1k0fctwsy1xs.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "06",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e39/5seyoqu9op23px8a0y1kjw8avs3x40hu.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "06",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/358/3qddz9dy4uvq59qz929rukj1u5yzqbqy.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/ab5/elqm92dj9rn6jixp5im7wjjp38fl7q1z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7cc/hhawsin5xelb2hxklxnmsqs9fg1ty5gz.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/7b3/0bodqhwatenab71sh0qm136bu9sdvvi6.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/909/04393no6le5m4l3jsld7xpm031w285nz.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/9b7/6brvw6m01ezbbh76usoef3hnkhcsglwp.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/765/wleki77hyrywyjmpfb59qgurl24pkclq.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/4de/815u0mmj3q7c0jz20mst1xa79w5mnlrs.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/1b7/zi97v4rw6b6orfjp1cqq8zgcz4rs1xa2.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a08/bx7h0nq1w3vp44dv8qn0edqws0i6jwex.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "30",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b09/sn3if2uoss4ept5bpol03wfnqhi2phty.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "30",
+    month: "12", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b2a/0oz2zxtgg25xvy71vm6gm5rkzj22e38p.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "17",
+    month: "01", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/514/reea2pvkxq87jzbh6o9chjw6md7jnut3.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "19",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a40/9qxgea3wnkaij0poi7jlyr08dsk76sto.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "19",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/255/g8nzf3bpzeapf8wj47549jatphm2te3j.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "25",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/3ec/lhup4l7yo7mwmm1vka0pmg3g149qugto.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/551/3229c8o49s7ia00xwqkqyad3eejpz3o4.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "19",
+    month: "01", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/f46/a1mxwylpygu6a010jprc1i8av5vksra0.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "26",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/551/3229c8o49s7ia00xwqkqyad3eejpz3o4.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "01", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/669/z62kymzht7krq59drck6patckt23uq0q.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "24",
+    month: "01", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e35/bhku0orm0b3w72gzkykagqvttrfekm57.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "01",
+    month: "08", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/16a/al6pfiuxm2zm30eu7f9a7wryz5vxevtk.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "08", 
+    year: "2022",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8c7/faq7fss73bsicqgc98yjrxh8kuqoc7fx.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "31",
+    month: "01", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/3d0/ytb36xogrrtqkjcbgnkxtg216bfckf14.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "08", 
+    year: "2022",
+    files: {
+      progress: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/63d/w1nhu0km1e51bkqfn5rppnw9lmal808p.ods",
+      },
+      done: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "14",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/71a/j2rc8nyeiewfundsg055tvuffjfi82pc.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b96/q0donh00rh9a5trbzn2xtvntohgr7gp7.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/1ab/85c1okamlw7yed106419th8cwt3jizji.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/e52/iaqeswfkijv8se41b4dza19mza7bludl.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "22",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/b8a/2nb2mm8w3ebe5vayiebjnm3i8ue2of7z.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "27",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/618/9wxqguwj871pt1a4po6uwfbp0vf3sm4i.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "28",
+    month: "02", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/8dc/x6ng6lfltfog0utfmx8w7ujke2pldtr9.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "02",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/eb7/6ajk1k6fiphr350trurrkw6hedxkysxx.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "07",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости .ods",
+        url: "/upload/iblock/75b/l360a83nhmmn4yaqpui918e32bhj745h.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "10",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/a19/ynrwr798xa7m878ice33mi25bva911ss.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "13",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/9e7/cp661di3lcch9ktu6n9kjo1492pq7mdu.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "15",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/1c3/8gbm4bw70z8hzv36q175u7u9eyprp9c3.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "20",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/6c3/sg62139l1f1gotbjfmg0pxm4urpwuekp.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "21",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/907/1llzcioc6uzpo6hih16ntz03ll2wt34b.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "23",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2a5/c94mwcb9qex9aaqxkb4h558yzy2nr9g0.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "29",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2c4/wk6ue3dqbno5wk1u9n94scz09shbg1jt.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "31",
+    month: "03", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/752/0v5izw9sz62q4mr49xqbmb2sxhix06rr.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "03",
+    month: "04", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2c4/goxssu0g358bz5i1d9714c98fsj4psh9.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "05",
+    month: "04", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/662/yc6riy7fgr4txmyebzz2wzir8ctytvxf.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "07",
+    month: "04", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/13f/slvoevvvkjiowwfbo66oevirdk73vr72.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "12",
+    month: "04", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/757/nztwhgoz65xrpb2xnzuxfj96kc48oa1t.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+  {
+    day: "13",
+    month: "04", 
+    year: "2023",
+    files: {
+      progress: {
+        status: false,
+        title: "",
+        url: "",
+      },
+      done: {
+        status: true,
+        title: "Акт об определении кадастровой стоимости.ods",
+        url: "/upload/iblock/2ea/6lanx8cdps0zkek03bf3f988jtb6ah4p.ods",
+      },
+      error: {
+        status: false,
+        title: "",
+        url: "",
+      },
+    },
+  },
+   
 ];
+
+function removeDuplicates(arr) {
+  const uniqueObjects = {}; // Dublikatlarini o'chirish uchun bo'sh obyekt
+  const result = []; // Yakuniy natijalarni saqlash uchun massiv
+  
+  for (const obj of arr) {
+    const key = `${obj.day}-${obj.month}-${obj.year}`; 
+    
+    if (!uniqueObjects[key]) {
+      uniqueObjects[key] = true;
+      result.push(obj);
+    }
+  }
+  
+  return result;
+}
+
+const uniqueObjectsArray = removeDuplicates(eventsArr);
 
 let eventDate = {
   day: "",
@@ -158,7 +4533,7 @@ const getCurrentDate = (dayArg, monthArg, yearArg = year) => {
   eventDate.month = checkZero(monthArg);
   eventDate.year = yearArg;
 
-  currentEvent = eventsArr.filter(
+  currentEvent = uniqueObjectsArray.filter(
     (v) =>
       v.day == eventDate.day &&
       v.month == eventDate.month &&
@@ -272,7 +4647,7 @@ function initCalendar() {
       todayActive = true;
     }
 
-    eventsArr.forEach((eventObj) => {
+    uniqueObjectsArray.forEach((eventObj) => {
       if (
         eventObj.day == i &&
         eventObj.month == month + 1 &&
@@ -416,6 +4791,7 @@ function pushYears() {
   for (let i = 1950; i <= year; i++) {
     const yearDivElem = document.createElement("div");
     yearDivElem.classList.add("years");
+    yearDivElem.setAttribute("id", i);
     yearDivElem.textContent = i;
     yearsList.prepend(yearDivElem);
   }
@@ -503,12 +4879,13 @@ function checkEvent() {
   let arr = [];
 
   for (let i = 0; i < daysContainer.childElementCount; i++) {
-    function prevNextEvent(arg) {
-      eventsArr.map((v) => {
+    function prevNextEvent(argMonth,argYear) {
+      uniqueObjectsArray.map((v) => {
         if (
           daysContainer.childNodes[i].children[0].textContent.trim() ==
             Number(v.day) &&
-          arg == Number(v.month)
+          argMonth == Number(v.month) &&
+          argYear == Number(v.year)
         ) {
           if (v.files.progress.status)
             daysContainer.children[i].classList.add("progress");
@@ -532,12 +4909,11 @@ function checkEvent() {
     }
 
     if (daysContainer.childNodes[i].className.includes("prev-date")) {
-      prevNextEvent(month);
+      prevNextEvent(month, year);
     } else if (daysContainer.childNodes[i].className.includes("next-date")) {
-      prevNextEvent(month + 2);
+      prevNextEvent(month + 2, year);
     }
   }
 
-  console.log(arr);
 }
 checkEvent();
