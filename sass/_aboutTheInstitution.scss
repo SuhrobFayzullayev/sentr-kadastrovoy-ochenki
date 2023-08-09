@@ -1,0 +1,192 @@
+// aboutTheInstitution start
+
+.aboutTheInstitution{
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+    &__link{
+        @include fontAll( 0.75rem,500,$red);
+        line-height: 130%;
+        border-bottom: 1px solid #EBEDEE;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        grid-gap: 10px;
+        width: 100%;
+    }
+
+    &__list{
+        display: grid;
+        grid-template-columns: 285px auto;
+        grid-gap: 20px;
+        align-items: start;
+    }
+
+    &__img{
+        @include fiximg(100%,100%,true);
+        img{
+            max-height: 400px;
+            object-position: center center;
+        }
+    }
+
+    &__management__item{
+        display: grid;
+        grid-template-columns: 180px auto;
+        align-items: center;
+        grid-gap: 20px;
+    }
+
+    &__management__img{
+        @include fiximg(180px,180px,true);
+        img{
+            object-position: center top;
+            overflow: hidden;
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            -ms-border-radius: 100px;
+            -o-border-radius: 100px;
+        }
+    }
+
+    &__management__name{
+        @include fontAll( 1.125rem,600,$title);
+        line-height: 130%;
+        margin-bottom: 15px;
+    }
+
+    &__management__text{
+        @include fontAll( 0.75rem,400,$text);
+        line-height: 135%;
+        margin-bottom: 10px;
+        img{
+            display: none;
+        }
+    }
+
+    &__h5__contacts{
+        @include fontAll( 1rem,600,$title);
+        line-height: 125%;
+        span{
+            @include fontAll( 1rem,400,$title);
+            line-height: 125%;
+            a{
+                @include fontAll( 1rem,400,$title);
+                line-height: 125%;
+                display: inline-block;
+            }
+        }
+    }
+
+    &__management__contacts{
+        display: flex;
+        align-items:flex-start;
+        flex-direction: column;
+        grid-gap: 5px;
+    }
+
+    &__management__list{
+        display: flex;
+        flex-direction: column;
+        grid-gap: 20px;
+        align-items: flex-start;
+        margin-top: 30px;
+    }
+
+    &__management{
+        margin-bottom: 30px;
+    }
+
+    // ------------------
+
+    &__activities__list{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 20px;
+    }
+
+    &__activities__item{
+        @include fontAll( 1rem,400,$title);
+        line-height: 135%;
+        position: relative;
+        padding-left: 30px;
+
+        &::after{
+            content: "";
+            display: block;
+            width: 20px;
+            height: 1px;
+            background-color: $red;
+            position: absolute;
+            top: 10px;
+            left: 0px;
+        }
+    }
+    
+}
+
+// aboutTheInstitution end
+
+@media (max-width:1100px){
+    .aboutTheInstitution__list {
+        grid-template-columns: 250px auto;
+    }
+}
+
+@media (max-width:950px){
+    .aboutTheInstitution__list{
+        grid-template-columns: 1fr;
+        grid-gap: 30px;
+    }
+
+    .aboutTheInstitution__management__img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .aboutTheInstitution__management__item{
+        grid-template-columns: 140px auto;
+    }
+}
+
+@media (max-width:650px){
+    .aboutTheInstitution__activities__item{
+        padding-left: 25px;
+    }
+
+    .aboutTheInstitution__activities__item::after{
+        width: 15px;
+    }
+}
+
+@media (max-width:500px){
+    .aboutTheInstitution__management__img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .aboutTheInstitution__management__item {
+        grid-template-columns: 100px auto;
+        align-items: flex-start;
+        grid-gap: 15px;
+    }
+
+    .aboutTheInstitution__activities__list{
+        grid-gap: 15px;
+    }
+}
+
+@media (max-width:400px){
+    .aboutTheInstitution__management__item {
+        grid-template-columns: auto;
+    }
+
+    .aboutTheInstitution__management__img {
+        width: 140px;
+        height: 140px;
+    }
+}

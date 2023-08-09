@@ -1,0 +1,48 @@
+// services start
+
+.services{
+    position: relative;
+    margin-bottom: 50px;
+
+    &__list{
+        display: flex;
+        flex-direction: column;
+        grid-gap: 20px;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    &__item{
+        padding: 25px;
+        width: 100%;
+        background-color: $fon;
+    }
+
+    &__item__img{
+        @include fiximg(65px,65px,true);
+        float: left;
+        margin-right: 20px;
+        img{
+            object-position: center center;
+        }
+    }
+
+    &__item__text{
+        @include fontAll(1rem,400,$text);
+        line-height: 145%;
+        text-align: justify;
+        img{
+            display: none;
+        }
+    }
+}
+
+// services end
+
+@media (max-width:650px){
+    .services__item__img {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+    }
+}

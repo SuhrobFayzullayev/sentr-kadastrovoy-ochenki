@@ -1,0 +1,238 @@
+// cadastralValuation start
+
+.cadastralValuation{
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+    &__list{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-gap: 20px;
+    }
+
+    &__item{
+        padding: 20px;
+        background-color: $fon;
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        @extend%transition;
+
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 20px;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        &:hover{
+            background-color: #E6E6E6;
+        }
+    }
+
+    &__img{
+        @include fiximg(65px,65px,true);
+        img{
+            object-position: center center;
+        }
+    }
+
+    &__text{
+        @include fontAll(1rem,400,$text);
+        line-height: 135%;
+        text-align: center;
+
+        max-height: 65px;
+        -webkit-line-clamp: 3;
+        position: relative;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+}
+
+// cadastralValuation end
+
+
+// cadastralValuationIn start
+
+.cadastralValuationIn{
+    position: relative;
+    margin-bottom: 50px;
+
+    &__list{
+        margin-top: 50px;
+        width: 100%;
+
+        .active{
+            display: flex;
+        }
+    }
+
+    &__form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        grid-gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    &__input{
+        background-color: $fff;
+        border: 1px solid #8A929B;
+        width: 340px;
+        height: 58px;
+        outline: #d14141;
+        padding: 15px;
+        @include fontAll(0.75rem,500,$text);
+        line-height: 100%;
+        &::placeholder{
+            @include fontAll(0.75rem,500,#8A929B);
+            line-height: 100%;
+        }
+    }
+
+    &__button{
+        padding: 15px 20px;
+        background-color: $red;
+        @include fontAll(0.75rem,400,$fff);
+        line-height: 100%;
+        text-transform: uppercase;
+        @extend%transition;
+        &:hover{
+            background-color: #a33731;
+        }
+    }
+    
+    // ----------------
+
+    &__true{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+    }
+
+    &__title__h5{
+        @include fontAll(0.75rem,700,$title);
+        line-height: 125%;
+        border-bottom: 1px solid #E6E6E6;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+        width: 100%;
+        max-width: 580px;
+        display: flex;
+        align-items: center;
+        grid-gap: 5px;
+        flex-wrap: wrap;
+        span{
+            @include fontAll(0.75rem,400,$title);
+            line-height: 125%;
+        }
+    }
+
+    &__title__h4{
+        @include fontAll(0.75rem,700,$text);
+        line-height: 125%;
+        border-bottom: 4px solid $red;
+        padding: 10px;
+        width: 100%;
+        max-width: 580px;
+        display: flex;
+        align-items: center;
+        grid-gap: 5px;
+        flex-wrap: wrap;
+        span{
+            @include fontAll(1.5rem,500,$red);
+            line-height: 125%;
+        }
+    }
+
+    // ----------------
+
+    &__false{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+    }
+
+    &__title__h3{
+        width: 100%;
+        max-width: 580px;
+        @include fontAll(0.75rem,700,$text);
+        line-height: 125%;
+        text-align: center;
+    }
+}
+
+.activeError{
+    border-color: $red;
+    color: $red;
+    &::placeholder{
+        color: $red;
+    }
+}
+
+// cadastralValuationIn end
+
+
+@media (max-width:1000px){
+    .cadastralValuation__list{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:700px){
+    .cadastralValuation__list{
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .cadastralValuation__item a{
+        grid-gap: 15px;
+    }
+
+    .cadastralValuation__img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cadastralValuation__item {
+        padding: 15px;
+    }
+
+    .cadastralValuationIn__title__h4 span{
+        font-size: 1.375rem;
+    }
+
+    .cadastralValuationIn__input{
+        width: 100%;
+        height: 50px;
+    }
+
+    .cadastralValuationIn__button{
+        width: 100%;
+    }
+
+    .cadastralValuationIn__title__h5 {
+        padding: 0px 15px 15px 15px;
+    }
+}
+
+@media (max-width:500px){
+    .cadastralValuationIn__title__h4 span {
+        font-size: 1.25rem;
+    }
+}

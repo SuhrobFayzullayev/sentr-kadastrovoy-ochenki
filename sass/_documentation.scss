@@ -1,0 +1,133 @@
+// documentation start
+
+.documentation{
+    position: relative;
+    margin-bottom: 50px;
+
+    &__title__h2{
+        @include fontAll(1.563rem,700,$title);
+        line-height: 135%;
+        text-transform: uppercase;
+        width: 100%;
+        padding: 25px 50px 25px 30px;
+        background-color: $fon;
+        cursor: pointer;
+        position: relative;
+        @extend%transition;
+        &::after{
+            content: "";
+            display: block;
+            @include fontAll(1.563rem,700,$red);
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            width: 18px;
+            height: 17px;
+            background: url('data:image/svg+xml,<svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 8H17V10H0V8Z" fill="%23AC110A"/><path d="M9.5 0.5L9.5 17.5H7.5L7.5 0.5L9.5 0.5Z" fill="%23AC110A"/></svg>');
+           
+            transform: translate(0,-50%);
+            -webkit-transform: translate(0,-50%);
+            -moz-transform: translate(0,-50%);
+            -ms-transform: translate(0,-50%);
+            -o-transform: translate(0,-50%);
+            @extend%transition;
+        }
+    }
+
+    &__item{
+        width: 100%;
+    }
+
+    &__list{
+        display: flex;
+        align-items: flex-start;
+        grid-gap: 10px;
+        flex-direction: column;
+        margin-top: 50px;
+
+        .active{
+            .documentation__title__h2{
+                color:$red;
+                &::after{
+                    width: 18px;
+                    height: 2px;
+                    background: url('data:image/svg+xml,<svg width="17" height="2" viewBox="0 0 17 2" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="17" height="2" fill="%23AC110A"/></svg>');
+                }
+            }
+
+            .documentation__menu__download{
+                height: auto;
+                overflow: inherit;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    &__menu__download{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 20px;
+        align-items: center;
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        @extend%transition;
+    }
+
+    &__link__download{
+        background-color: $fon;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 24px auto;
+        grid-gap: 10px;
+        @extend%transition;
+
+        &:hover{
+            background-color: #E6E6E6;
+        }
+    }
+
+    &__foto__download{
+        @include fiximg(24px,24px,true);
+        img{
+            object-position: center center;
+        }
+    }
+}
+
+// documentation end
+
+@media (max-width:1000px){
+    .documentation__title__h2 {
+        font-size: 1.375rem;
+    }
+}
+
+@media (max-width:800px){
+    .documentation__menu__download {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .documentation__list .active .documentation__menu__download {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .documentation__title__h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width:650px){
+    .documentation__title__h2 {
+        font-size: 1.125rem;
+        padding: 15px 50px 15px 20px;
+    }
+}
+
+@media (max-width:400px){
+    .documentation__title__h2 {
+        font-size: 1rem;
+    }
+}
