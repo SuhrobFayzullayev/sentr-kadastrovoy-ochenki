@@ -1139,36 +1139,37 @@ label {
     .calendar-container .right .events {
       margin: 20px 0; }
       .calendar-container .right .events div {
-        height: 44px;
-        margin: 6px 0;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0 10px;
-        background-color: #f8f8f8;
-        display: none;
-        position: relative; }
-        .calendar-container .right .events div span {
-          display: block;
-          font-size: 16px;
-          font-weight: 400;
-          margin: 0 10px !important;
-          color: #3C4A59;
-          width: 100%;
-          height: 100%;
-          display: flex;
+        display: none; }
+        .calendar-container .right .events div .event-item {
+          height: 44px;
+          margin: 6px 0;
           justify-content: flex-start;
-          align-items: center; }
-          .calendar-container .right .events div span a {
+          align-items: center;
+          background-color: #f8f8f8;
+          display: flex;
+          position: relative; }
+          .calendar-container .right .events div .event-item span {
+            display: block;
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0 10px !important;
+            color: #3C4A59;
             width: 100%;
             height: 100%;
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0; }
+            display: flex;
+            justify-content: flex-start;
+            align-items: center; }
+            .calendar-container .right .events div .event-item span a {
+              width: 100%;
+              height: 100%;
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0; }
       .calendar-container .right .events .progress-down.active,
       .calendar-container .right .events .done-down.active,
       .calendar-container .right .events .error-down.active {
-        display: flex !important; }
+        display: block !important; }
   .calendar-container .left {
     width: 70%; }
     .calendar-container .left .calendar {
