@@ -38,8 +38,6 @@ const eventsArr = [
     files: {
       progress: {
         status: true,
-        title: "Акт об определении кадастровой стоимости.ods",
-        url: "/upload/iblock/005/ocj0178rptm42kgswpssoaao3yczj04f.ods",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -48,8 +46,6 @@ const eventsArr = [
       },
       done: {
         status: true,
-        title: "",
-        url: "",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -58,8 +54,6 @@ const eventsArr = [
       },
       error: {
         status: true,
-        title: "",
-        url: "",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -75,8 +69,6 @@ const eventsArr = [
     files: {
       progress: {
         status: true,
-        title: "Акт об определении кадастровой стоимости.ods",
-        url: "/upload/iblock/005/ocj0178rptm42kgswpssoaao3yczj04f.ods",
         docList: [
           { title: "test02", url: "test2" },
           { title: "test03", url: "test3" },
@@ -84,8 +76,6 @@ const eventsArr = [
       },
       done: {
         status: true,
-        title: "",
-        url: "",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -94,8 +84,6 @@ const eventsArr = [
       },
       error: {
         status: true,
-        title: "",
-        url: "",
         docList: [{ title: "test03", url: "test3" }],
       },
     },
@@ -107,8 +95,6 @@ const eventsArr = [
     files: {
       progress: {
         status: false,
-        title: "Акт №АОКС-13_2021_000001.ods",
-        url: "/upload/iblock/6d8/c3m7qhxx2hckzznha0fj7rirrke5370a.ods",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -117,8 +103,6 @@ const eventsArr = [
       },
       done: {
         status: false,
-        title: "",
-        url: "",
         docList: [
           { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
@@ -127,8 +111,6 @@ const eventsArr = [
       },
       error: {
         status: true,
-        title: "",
-        url: "",
         docList: [
           { title: "test02", url: "test2" },
           { title: "test03", url: "test3" },
