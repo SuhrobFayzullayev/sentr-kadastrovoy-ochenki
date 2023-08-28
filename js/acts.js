@@ -60,16 +60,25 @@ const eventsArr = [
           { title: "test03", url: "test3" },
         ],
       },
+      ct: {
+        status: true,
+        docList: [
+          { title: "test01", url: "test1" },
+          { title: "test02", url: "test2" },
+          { title: "test03", url: "test3" },
+        ],
+      },
     },
   },
   {
-    day: "07",
+    day: "08",
     month: "08",
     year: "2023",
     files: {
       progress: {
-        status: true,
+        status: false,
         docList: [
+          { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
           { title: "test03", url: "test3" },
         ],
@@ -83,17 +92,6 @@ const eventsArr = [
         ],
       },
       error: {
-        status: true,
-        docList: [{ title: "test03", url: "test3" }],
-      },
-    },
-  },
-  {
-    day: "11",
-    month: "08",
-    year: "2023",
-    files: {
-      progress: {
         status: false,
         docList: [
           { title: "test01", url: "test1" },
@@ -101,17 +99,10 @@ const eventsArr = [
           { title: "test03", url: "test3" },
         ],
       },
-      done: {
-        status: false,
-        docList: [
-          { title: "test01", url: "test1" },
-          { title: "test02", url: "test2" },
-          { title: "test03", url: "test3" },
-        ],
-      },
-      error: {
+      ct: {
         status: true,
         docList: [
+          { title: "test01", url: "test1" },
           { title: "test02", url: "test2" },
           { title: "test03", url: "test3" },
         ],
@@ -148,7 +139,6 @@ let currentEvent = [];
 
 const checkZero = (arg) => (arg < 10 ? `0${arg}` : arg);
 const getCurrentDate = (dayArg, monthArg, yearArg = year) => {
-  console.log(dayArg, monthArg);
   eventDate.day = checkZero(dayArg);
   eventDate.month = checkZero(monthArg);
   eventDate.year = yearArg;
@@ -195,10 +185,10 @@ const getCurrentDate = (dayArg, monthArg, yearArg = year) => {
     <div class="done-down ${
       currentEvent[0]?.files.done.status ? "active" : ""
     }">
-      ${currentEvent[0]?.files.done.docList
-        .map(
-          (v) =>
-            `<div class="event-item">
+    ${currentEvent[0]?.files.done.docList
+      .map(
+        (v) =>
+          `<div class="event-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M17.6254 16.4999H17.2504V14.9999H17.6254C18.5205 15.0357 19.3932 14.7145 20.0514 14.1069C20.7097 13.4992 21.0996 12.655 21.1354 11.7599C21.1712 10.8648 20.8499 9.99215 20.2423 9.3339C19.6347 8.67564 18.7905 8.28573 17.8954 8.24992H17.2504L17.1754 7.63492C17.009 6.37226 16.3893 5.21313 15.4317 4.37346C14.4741 3.53379 13.244 3.07083 11.9704 3.07083C10.6968 3.07083 9.46664 3.53379 8.50906 4.37346C7.55148 5.21313 6.93178 6.37226 6.76538 7.63492L6.75038 8.24992H6.10538C5.21028 8.28573 4.36606 8.67564 3.75844 9.3339C3.15082 9.99215 2.82958 10.8648 2.86538 11.7599C2.90119 12.655 3.2911 13.4992 3.94936 14.1069C4.60761 14.7145 5.48028 15.0357 6.37538 14.9999H6.75038V16.4999H6.37538C5.17269 16.4923 4.01526 16.0404 3.12562 15.231C2.23599 14.4216 1.67694 13.3119 1.55598 12.1153C1.43502 10.9187 1.76067 9.71961 2.47032 8.74856C3.17998 7.77752 4.22354 7.10308 5.40038 6.85492C5.72416 5.34481 6.55601 3.9914 7.75712 3.02052C8.95823 2.04965 10.456 1.52002 12.0004 1.52002C13.5448 1.52002 15.0425 2.04965 16.2436 3.02052C17.4448 3.9914 18.2766 5.34481 18.6004 6.85492C19.7772 7.10308 20.8208 7.77752 21.5304 8.74856C22.2401 9.71961 22.5658 10.9187 22.4448 12.1153C22.3238 13.3119 21.7648 14.4216 20.8751 15.231C19.9855 16.0404 18.8281 16.4923 17.6254 16.4999Z" fill="#383085"/>
                 <path d="M12.75 19.6275V10.5H11.25V19.6275L9.3075 17.6925L8.25 18.75L12 22.5L15.75 18.75L14.6925 17.6925L12.75 19.6275Z" fill="#383085"/>
@@ -207,17 +197,17 @@ const getCurrentDate = (dayArg, monthArg, yearArg = year) => {
               <a href="${v.url}" download></a> ${v.title}
               </span>
             </div>`
-        )
-        .join(" ")}
+      )
+      .join(" ")}
     </div>
     
     <div class="error-down ${
       currentEvent[0]?.files.error.status ? "active" : ""
     }">
-      ${currentEvent[0]?.files.error.docList
-        .map(
-          (v) =>
-            `<div class="event-item">
+    ${currentEvent[0]?.files.error.docList
+      .map(
+        (v) =>
+          `<div class="event-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17.6254 16.4999H17.2504V14.9999H17.6254C18.5205 15.0357 19.3932 14.7145 20.0514 14.1069C20.7097 13.4992 21.0996 12.655 21.1354 11.7599C21.1712 10.8648 20.8499 9.99215 20.2423 9.3339C19.6347 8.67564 18.7905 8.28573 17.8954 8.24992H17.2504L17.1754 7.63492C17.009 6.37226 16.3893 5.21313 15.4317 4.37346C14.4741 3.53379 13.244 3.07083 11.9704 3.07083C10.6968 3.07083 9.46664 3.53379 8.50906 4.37346C7.55148 5.21313 6.93178 6.37226 6.76538 7.63492L6.75038 8.24992H6.10538C5.21028 8.28573 4.36606 8.67564 3.75844 9.3339C3.15082 9.99215 2.82958 10.8648 2.86538 11.7599C2.90119 12.655 3.2911 13.4992 3.94936 14.1069C4.60761 14.7145 5.48028 15.0357 6.37538 14.9999H6.75038V16.4999H6.37538C5.17269 16.4923 4.01526 16.0404 3.12562 15.231C2.23599 14.4216 1.67694 13.3119 1.55598 12.1153C1.43502 10.9187 1.76067 9.71961 2.47032 8.74856C3.17998 7.77752 4.22354 7.10308 5.40038 6.85492C5.72416 5.34481 6.55601 3.9914 7.75712 3.02052C8.95823 2.04965 10.456 1.52002 12.0004 1.52002C13.5448 1.52002 15.0425 2.04965 16.2436 3.02052C17.4448 3.9914 18.2766 5.34481 18.6004 6.85492C19.7772 7.10308 20.8208 7.77752 21.5304 8.74856C22.2401 9.71961 22.5658 10.9187 22.4448 12.1153C22.3238 13.3119 21.7648 14.4216 20.8751 15.231C19.9855 16.0404 18.8281 16.4923 17.6254 16.4999Z" fill="#AC110A"/>
               <path d="M12.75 19.6275V10.5H11.25V19.6275L9.3075 17.6925L8.25 18.75L12 22.5L15.75 18.75L14.6925 17.6925L12.75 19.6275Z" fill="#AC110A"/>
@@ -226,8 +216,25 @@ const getCurrentDate = (dayArg, monthArg, yearArg = year) => {
               <a href="${v.url}" download></a> ${v.title}
               </span>
             </div>`
-        )
-        .join(" ")}
+      )
+      .join(" ")}
+    </div>
+    
+    <div class="ct-down ${currentEvent[0]?.files.ct.status ? "active" : ""}">
+    ${currentEvent[0]?.files.ct.docList
+      .map(
+        (v) =>
+          `<div class="event-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17.6254 16.4999H17.2504V14.9999H17.6254C18.5205 15.0357 19.3932 14.7145 20.0514 14.1069C20.7097 13.4992 21.0996 12.655 21.1354 11.7599C21.1712 10.8648 20.8499 9.99215 20.2423 9.3339C19.6347 8.67564 18.7905 8.28573 17.8954 8.24992H17.2504L17.1754 7.63492C17.009 6.37226 16.3893 5.21313 15.4317 4.37346C14.4741 3.53379 13.244 3.07083 11.9704 3.07083C10.6968 3.07083 9.46664 3.53379 8.50906 4.37346C7.55148 5.21313 6.93178 6.37226 6.76538 7.63492L6.75038 8.24992H6.10538C5.21028 8.28573 4.36606 8.67564 3.75844 9.3339C3.15082 9.99215 2.82958 10.8648 2.86538 11.7599C2.90119 12.655 3.2911 13.4992 3.94936 14.1069C4.60761 14.7145 5.48028 15.0357 6.37538 14.9999H6.75038V16.4999H6.37538C5.17269 16.4923 4.01526 16.0404 3.12562 15.231C2.23599 14.4216 1.67694 13.3119 1.55598 12.1153C1.43502 10.9187 1.76067 9.71961 2.47032 8.74856C3.17998 7.77752 4.22354 7.10308 5.40038 6.85492C5.72416 5.34481 6.55601 3.9914 7.75712 3.02052C8.95823 2.04965 10.456 1.52002 12.0004 1.52002C13.5448 1.52002 15.0425 2.04965 16.2436 3.02052C17.4448 3.9914 18.2766 5.34481 18.6004 6.85492C19.7772 7.10308 20.8208 7.77752 21.5304 8.74856C22.2401 9.71961 22.5658 10.9187 22.4448 12.1153C22.3238 13.3119 21.7648 14.4216 20.8751 15.231C19.9855 16.0404 18.8281 16.4923 17.6254 16.4999Z" fill="#ff1494"/>
+              <path d="M12.75 19.6275V10.5H11.25V19.6275L9.3075 17.6925L8.25 18.75L12 22.5L15.75 18.75L14.6925 17.6925L12.75 19.6275Z" fill="#ff1494"/>
+            </svg>
+              <span>
+              <a href="${v.url}" download></a> ${v.title}
+              </span>
+            </div>`
+      )
+      .join(" ")}
     </div>
    `;
   downloadDoc.innerHTML = eventDown;
@@ -255,7 +262,7 @@ function initCalendar() {
 
   for (let x = day; x > 0; x--) {
     days += `<div class="day prev-date">
-      <div style="height:25%">${prevDays - x + 1}</div>
+      <div style="height:20%">${prevDays - x + 1}</div>
     </div>`;
   }
 
@@ -271,6 +278,7 @@ function initCalendar() {
     let progress = false;
     let done = false;
     let err = false;
+    let ct = false;
 
     let todayActive = false;
     if (
@@ -291,31 +299,32 @@ function initCalendar() {
         if (eventObj.files.progress.status) progress = true;
         if (eventObj.files.done.status) done = true;
         if (eventObj.files.error.status) err = true;
+        if (eventObj.files.ct.status) ct = true;
       }
     });
 
     if (event) {
-      let result = `${progress ? "progress" : ""} ${done ? "done" : ""} ${
-        err ? "error" : ""
-      }`;
+      let result = `${progress ? "progress" : ""} ${done ? "done" : ""} 
+      ${err ? "error" : ""} ${ct ? "ct" : ""}`;
 
       days += `<div class="day event ${
         todayActive ? "active" : ""
-      } ${result}"+><div style="height:25%">${i}</div> <div class="docs">
+      } ${result}"+><div style="height:20%">${i}</div> <div class="docs">
         <div class="doc-1">АКТ ЗУ</div>
         <div class="doc-2">АКТ ОКС</div>
         <div class="doc-3">АКТ ОШИБКА</div>
+        <div class="doc-4">АКТ СТ</div>
         </div></div>`;
     } else {
       days += `<div class="day ${
         todayActive ? "active" : ""
-      } "><div style="height:25%">${i}</div></div>`;
+      } "><div style="height:20%">${i}</div></div>`;
     }
   }
 
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="day next-date">
-      <div style="height:25%">${j}</div>
+      <div style="height:20%">${j}</div>
     </div>`;
   }
 
@@ -527,15 +536,17 @@ function checkEvent() {
             daysContainer.children[i].classList.add("done");
           if (v.files.error.status)
             daysContainer.children[i].classList.add("error");
+          if (v.files.ct.status) daysContainer.children[i].classList.add("ct");
 
           daysContainer.children[i].classList.add("event");
 
           daysContainer.childNodes[i].innerHTML = `
-          <div style="height:25%">${daysContainer.childNodes[i].children[0].textContent}</div> 
+          <div style="height:20%">${daysContainer.childNodes[i].children[0].textContent}</div> 
           <div class="docs">
             <div class="doc-1">АКТ ЗУ</div>
             <div class="doc-2">АКТ ОКС</div>
             <div class="doc-3">АКТ ОШИБКА</div>
+            <div class="doc-4">АКТ СТ</div>
           </div>
         `;
         }

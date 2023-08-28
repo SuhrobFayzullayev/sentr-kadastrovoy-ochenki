@@ -1119,6 +1119,11 @@ label {
 @media (max-width: 400px) {
   .contacts__map__cart {
     height: 200px; } }
+.header__cart,
+.newsin__cart {
+  margin-left: 10px !important;
+  margin-right: 10px !important; }
+
 .calendar-container {
   display: flex;
   flex-wrap: wrap;
@@ -1168,7 +1173,8 @@ label {
               left: 0; }
       .calendar-container .right .events .progress-down.active,
       .calendar-container .right .events .done-down.active,
-      .calendar-container .right .events .error-down.active {
+      .calendar-container .right .events .error-down.active,
+      .calendar-container .right .events .ct-down.active {
         display: block !important; }
   .calendar-container .left {
     width: 70%; }
@@ -1365,7 +1371,7 @@ label {
         border-left: 0.5px solid #8a929b !important; }
         .calendar-container .left .calendar .days .day {
           width: calc(100% / 7);
-          height: 100px;
+          height: 125px;
           cursor: pointer;
           color: black;
           border: 0.5px solid #8a929b !important;
@@ -1378,7 +1384,7 @@ label {
             .calendar-container .left .calendar .days .day.active:hover {
               border: 2px solid #AC110A !important; }
           .calendar-container .left .calendar .days .day div:nth-child(1) {
-            height: 25%;
+            height: 20%;
             padding-top: 5px; }
           .calendar-container .left .calendar .days .day:hover {
             border: 2px solid #3C4A59 !important; }
@@ -1393,25 +1399,27 @@ label {
           margin: 0 auto; }
           .calendar-container .left .calendar .days .event .docs div {
             text-align: start;
-            height: 27%;
+            height: 22%;
             border-radius: 4px;
             align-items: center;
             padding: 0 7px;
             display: none;
             color: #fff;
             font-size: 9px;
-            font-weight: 400; }
-            .calendar-container .left .calendar .days .event .docs div:nth-child(2) {
-              margin: 4px 0; }
+            font-weight: 400;
+            margin-bottom: 4px; }
         .calendar-container .left .calendar .days .event.progress .doc-1 {
           display: flex !important;
           background-color: #f7ab47; }
         .calendar-container .left .calendar .days .event.done .doc-2 {
           display: flex !important;
           background-color: #383085; }
-        .calendar-container .left .calendar .days .event.event.error .doc-3 {
+        .calendar-container .left .calendar .days .event.error .doc-3 {
           display: flex !important;
           background-color: #AC110A; }
+        .calendar-container .left .calendar .days .event.ct .doc-4 {
+          display: flex !important;
+          background-color: #ff1494; }
       .calendar-container .left .calendar .goto-today {
         width: 100%;
         height: 50px;
